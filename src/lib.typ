@@ -89,7 +89,7 @@
       kind: "touvlo:brick",
       supplement: prefix,
       outlined: false,
-    )[#block(width: 100%)[
+    )[#block(width: 100%, ..global_block_args, ..local_block_args)[
         #metadata(prefix)
         #label("touvlo:ref")
 
