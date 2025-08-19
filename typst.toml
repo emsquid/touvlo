@@ -1,0 +1,10 @@
+[package]
+name = "touvlo"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+authors = ["Emanuel"]
+repository = "https://github.com/emsquid/touvlo"
+categories = ["components", "utility"]
+disciplines = ["mathematics"]
+keywords = ["mathematics"]
+license = "MIT"
