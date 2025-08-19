@@ -32,7 +32,7 @@
       kind: "touvlo:brick",
       supplement: if title != none [#title] else [#kind],
       outlined: false,
-    )[#block(width: 100%)[
+    )[#block(width: 100%, ..global_block_args, ..local_block_args)[
         #if counter != none [
           #if number != auto [
             #metadata({
