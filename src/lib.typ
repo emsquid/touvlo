@@ -3,14 +3,14 @@
   counter: none,
   numbering: "1.1",
   suffix: none,
+  titlefmt: title => title,
   bodyfmt: body => body,
   ..global_block_args,
 ) = {
-  let prefix
-  if counter == none {
-    prefix = _ => [*#kind*]
+  let prefix = if counter == none {
+     _ => titlefmt([*#kind*])
   } else {
-    prefix = number => if number != none [*#kind #number*] else [*#kind*]
+     number => titlefmt(if number != none [*#kind #number*] else [*#kind*])
   }
 
   if counter != none and type(counter) != dictionary {
@@ -32,7 +32,7 @@
       kind: "touvlo:brick",
       supplement: if title != none [#title] else [#kind],
       outlined: false,
-    )[#block(width: 100%, ..global_block_args, ..local_block_args)[
+    )[#block(width: 100%, ..global_block_args.named(), ..local_block_args.named())[
         #if counter != none [
           #if number != auto [
             #metadata({
@@ -76,6 +76,7 @@
 #let proofbrick(
   prefix,
   suffix: $square$,
+  titlefmt: title => title,
   bodyfmt: body => body,
   ..global_block_args,
 ) = {
@@ -84,12 +85,12 @@
     body,
     ..local_block_args,
   ) => {
-    let prefix = if of != none [_#prefix #of._] else [_#prefix._]
+    let prefix = titlefmt(if of != none [_#prefix #of._] else [_#prefix._])
     figure(
       kind: "touvlo:brick",
       supplement: prefix,
       outlined: false,
-    )[#block(width: 100%, ..global_block_args, ..local_block_args)[
+    )[#block(width: 100%, ..global_block_args.named(), ..local_block_args.named())[
         #metadata(prefix)
         #label("touvlo:ref")
 
