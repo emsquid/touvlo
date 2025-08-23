@@ -8,9 +8,9 @@
   ..global_block_args,
 ) = {
   let prefix = if counter == none {
-     _ => titlefmt([*#kind*])
+    _ => titlefmt([*#kind*])
   } else {
-     number => titlefmt(if number != none [*#kind #number*] else [*#kind*])
+    number => titlefmt(if number != none [*#kind #number*] else [*#kind*])
   }
 
   if counter != none and type(counter) != dictionary {
@@ -32,7 +32,11 @@
       kind: "touvlo:brick",
       supplement: if title != none [#title] else [#kind],
       outlined: false,
-    )[#block(width: 100%, ..global_block_args.named(), ..local_block_args.named())[
+    )[#block(
+        width: 100%,
+        ..global_block_args.named(),
+        ..local_block_args.named(),
+      )[
         #if counter != none [
           #if number != auto [
             #metadata({
@@ -86,21 +90,21 @@
     ..local_block_args,
   ) => {
     let prefix = titlefmt(if of != none [_#prefix #of._] else [_#prefix._])
+    let body = body + h(1fr) + sym.wj + sym.space.nobreak + suffix + parbreak()
     figure(
       kind: "touvlo:brick",
       supplement: prefix,
       outlined: false,
-    )[#block(width: 100%, ..global_block_args.named(), ..local_block_args.named())[
+    )[#block(
+        width: 100%,
+        ..global_block_args.named(),
+        ..local_block_args.named(),
+      )[
         #metadata(prefix)
         #label("touvlo:ref")
 
         #box(prefix)
         #bodyfmt(body)
-        #h(1fr)
-        #sym.wj
-        #sym.space.nobreak
-        #suffix
-        #parbreak()
       ]]
   }
 }
