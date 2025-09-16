@@ -8,9 +8,9 @@
   ..global_block_args,
 ) = {
   let prefix = if counter == none {
-    _ => titlefmt([*#kind*])
+    _ => [*#kind*]
   } else {
-    number => titlefmt(if number != none [*#kind #number*] else [*#kind*])
+    number => if number != none [*#kind #number*] else [*#kind*]
   }
 
   if counter != none and type(counter) != dictionary {
@@ -66,9 +66,11 @@
 
 
         #box[
-          #if (
-            title != none
-          ) [#prefix(number) (#title)*.*] else [#prefix(number)*.*]
+          #titlefmt([
+            #if (
+              title != none
+            ) [#prefix(number) (#title)*.*] else [#prefix(number)*.*]
+          ])
         ]
         #bodyfmt(body)
         #suffix
